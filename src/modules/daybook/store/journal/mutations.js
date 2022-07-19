@@ -20,3 +20,7 @@ export function deleteEntry(state, id) {
   const deleteEntryById = state.entries.filter(entry => entry.id !== id)
   state.entries = deleteEntryById
 }
+
+export function clearEntries(state) {
+  state.entries = []
+}

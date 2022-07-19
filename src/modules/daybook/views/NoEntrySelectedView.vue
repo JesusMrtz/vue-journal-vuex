@@ -17,7 +17,6 @@ export default {
 
   methods: {
     createNewEntry() {
-      console.log('first')
       this.$router.push({ name: 'entry', params: { id: 'new' } })
     }
   }
