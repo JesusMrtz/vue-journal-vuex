@@ -16,7 +16,7 @@ export async function createUser({ commit }, user) {
     delete user.password
     commit('loginUser', { user, idToken, refreshToken })
 
-    return { ok: true, message: name }
+    return { ok: true }
   } catch (error) {
     return { ok: false, message: error.response.data.error.message }
   }
@@ -57,6 +57,7 @@ export async function checkAuthentication({ commit }) {
     }
 
     commit('loginUser', { user, idToken, refreshToken })
+    return { ok: true }
   } catch (error) {
     commit('logout')
     return { ok: false, message: error.response.data.error.message }

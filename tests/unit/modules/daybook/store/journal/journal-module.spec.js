@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import journal from '@/modules/daybook/store/journal'
 import journalAPI from "@/api/journalApi";
+import authAPI from "@/api/authApi";
 import { journalState } from "../../../../mocks/test-journal-state";
 
 /**
@@ -20,6 +21,13 @@ const createVuexStore = ( initialState ) => {
 }
 
 describe('VUEX - Prueba en el Journal Module', () => {
+
+  /** Antes de que una pruba se ejecute, se inicia sesión para obtener un idToken   */
+  beforeAll( async () => {
+    const { data } = await authAPI.post(':signInWithPassword', { email: 'correo2@correo.com', password: '123456', returnSecureToken: true })
+
+    localStorage.setItem('idToken', data.idToken)
+  })
 
   // Pruebas básicas
   it('Este es el estado inicial, debe de lucir este state', () => {
